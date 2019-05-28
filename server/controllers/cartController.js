@@ -13,7 +13,7 @@ module.exports = {
     }
     res.status(200).send(user);
   },
-  delete: (req, res) => {
+  remove: (req, res) => {
     const { id } = req.params;
     const { user } = req.session;
     const index = user.cart.findIndex(swag => swag.id == id);
