@@ -5,6 +5,12 @@ const app = express();
 const { SERVER_PORT, SESSION_SECRET } = process.env;
 const checkForSession = require("./middlewares/checkForSession");
 const { read } = require("./controllers/swagController");
+const {
+  getUser,
+  login,
+  register,
+  signout
+} = require("./controllers/authController");
 
 app.use(express.json());
 app.use(
@@ -16,6 +22,11 @@ app.use(
 );
 
 app.use(checkForSession);
+
+app.get("/api/user", getUser);
+app.get("/api/register", register);
+app.get("/api/login", login);
+app.get("/api/signout", signout);
 
 app.get("/api/swag", read);
 
