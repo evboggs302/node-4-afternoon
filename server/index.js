@@ -11,6 +11,7 @@ const {
   register,
   signout
 } = require("./controllers/authController");
+const cartController = require("./controllers/cartController");
 
 app.use(express.json());
 app.use(
@@ -24,9 +25,12 @@ app.use(
 app.use(checkForSession);
 
 app.get("/api/user", getUser);
-app.get("/api/register", register);
-app.get("/api/login", login);
-app.get("/api/signout", signout);
+app.post("/api/register", register);
+app.post("/api/login", login);
+app.post("/api/signout", signout);
+app.post("/api/cart/checkout", cartController.checkout);
+app.post("/api/cart/:id", cartController.add);
+app.delete("/api/cart/:id", cartController.delete);
 
 app.get("/api/swag", read);
 
